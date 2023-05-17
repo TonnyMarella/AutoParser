@@ -60,7 +60,7 @@ class MobileParser(AbstractAutoParser):
                 AbstractAutoParser.car_link.append(
                     date.find('a').get('href'))
                 AbstractAutoParser.car_price.append(
-                    date.find('span', class_='h3 u-block').text[:-2] + ' евро')
+                    date.find('span', class_='h3 u-block').text[:-2] + ' euro')
                 AbstractAutoParser.car_year.append(
                     date.find('div', class_='vehicle-data--ad-with-price-rating-label').text[3:10])
                 AbstractAutoParser.car_mileage.append(
@@ -146,15 +146,15 @@ class OttoParser(AbstractAutoParser):
                 AbstractAutoParser.car_price.append(
                     date.find('span', class_='ooa-epvm6 e1b25f6f8').text)
                 AbstractAutoParser.car_year.append(
-                    date.find('ul').text[:4] + ' год')
+                    date.find('ul').text[:4] + ' year')
                 AbstractAutoParser.car_mileage.append(
-                    date.find('ul').text[5: 12] + ' км')
+                    date.find('ul').text[5: 12] + ' km')
 
             self.page += 1
 
 
 def save_date():
-    workbook = xlsxwriter.Workbook('hello.xlsx')
+    workbook = xlsxwriter.Workbook('result.xlsx')
     worksheet = workbook.add_worksheet()
 
     for i in range(0, len(AbstractAutoParser.car_name)):
@@ -168,24 +168,24 @@ def save_date():
 
 
 if __name__ == '__main__':
-    mark = input('Выберете марку машины(Написать марку):\n'
+    mark = input('Choice car mark(Write number):\n'
                  '1. Volkswagen\n2. Opel\n'
                  '3. Audi\n4. BMW\n'
                  '5. Toyota\n6. Skoda\n'
                  '7. Peugeot\n8.Renault\n'
                  '9.Ford\n10.Mercedes-Benz\n')
 
-    start_price_euro = input('Введите от какой цены(евро(мин 150)):\n')
-    end_price_euro = input('Введите до какой цены(евро):\n')
+    start_price_euro = input('Enter from what price(euro(min 150)):\n')
+    end_price_euro = input('Enter up to what price you want(euro):\n')
 
-    start_price_zlot = input('Введите от какой цены(злоты(мин 2000):\n')
-    end_price_zlot = input('Введите до какой цены(злоты):\n')
+    start_price_zlot = input('Enter from what price(PLN(min 2000):\n')
+    end_price_zlot = input('Enter up to what price (PLN):\n')
 
-    start_year = input('Введите от какого года:')
-    end_year = input('Введите до какого года:')
+    start_year = input('Enter from what year:')
+    end_year = input('Enter until what year:')
 
-    start_mileage = input('Введите от какого пробега:')
-    end_mileage = input('Введите до какого пробега:')
+    start_mileage = input('Enter from what mileage:')
+    end_mileage = input('Enter how far:')
 
     URL_MOBILE = 'https://suchen.mobile.de/fahrzeuge/search.html' \
                  '?fr=' + start_year + '%3A' + end_year + \
